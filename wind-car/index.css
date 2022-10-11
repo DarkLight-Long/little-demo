@@ -1,11 +1,9 @@
 body {
  margin: 0;
-}
-#app {
-  display: flex;
+ display: flex;
   justify-content: center;
   background-color: black;
-  height: 100vh;
+  height: 500px;
 }
 .wind-car {
   position: relative;

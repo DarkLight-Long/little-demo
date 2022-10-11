@@ -1,0 +1,20 @@
+.tar {
+  background-color: black;
+  height: 30px;
+  width: 100vw;
+  color: white;
+  display: flex;
+}
+.menu {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  color: green;
+}
+.menu:hover {
+  color: yellow;
+  opacity: 0.5;
+}
+.item {
+  background-color: black;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="tar">
+        <span v-for="(menu, index) in menuList" :key="index">
+          <span style="display: flex">
+            <div class="menu" @click="handleMenuClick(menu)" v-show="menu.show">{{menu.name}}</div>|
+          </span>
+          <span v-show="menu.children.show">
+            <span v-for="(item, i) in menu.children.item" :key="i">
+              <div class="menu item" @click="handleItemClick(item)" v-show="item.show">{{item.name}}</div>
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          menuList: [
+            {
+              name: '菜单',
+              show: true,
+              children: {
+                show: false,
+                item: [
+                  {
+                    name: '菜单1',
+                    show: true
+                  },
+                  {
+                    name: '菜单3',
+                    show: true
+                  },
+                  {
+                    name: '菜单3',
+                    show: false
+                  }
+                ]
+              }
+            },
+            {
+              name: '菜单2',
+              show: true,
+              children: {
+                show: false,
+                item: [
+                  {
+                    name: '菜单1',
+                    show: true
+                  },
+                  {
+                    name: '菜单3',
+                    show: true
+                  },
+                  {
+                    name: '菜单3',
+                    show: false
+                  }
+                ]
+              }
+            },
+            {
+              name: '菜单3',
+              show: true,
+              children: {
+                show: false,
+                item: [
+                  {
+                    name: '菜单1',
+                    show: true
+                  },
+                  {
+                    name: '菜单3',
+                    show: true
+                  },
+                  {
+                    name: '菜单3',
+                    show: false
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        methods: {
+          handleMenuClick (menu) {
+            menu.children.show = true
+
+            let handleOtherClick = (e) => {
+              if ((e.target.className !== 'menu' || e.target.innerText !== menu.name) && menu.children.show) {
+                menu.children.show = false
+              }
+              window.removeEventListener('click', handleOtherClick)
+              console.log('移除其他点击事件')
+            }
+            // 延迟添加 防止直接触发事件卸载
+            setTimeout(() => {
+              window.addEventListener('click', handleOtherClick)
+              console.log('添加其他点击事件')
+            }, 300)
+          },
+          handleItemClick (index) {
+            console.log(index)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
