@@ -1,6 +1,8 @@
 #app {
   display: flex;
   margin-left: 100px;
+  /* 缩放 */
+  transform: scale(0.5);
 }
 .angle {
   display: flex;
